@@ -7,18 +7,18 @@ const contributionRoutes = require('./routes/contributions')
 const voteRoutes = require('./routes/votes')
 
 const app = express()
-const cors = require('cors')
 
 app.use(cors({
-  origin: '*', // TEMP for fixing (we’ll secure later)
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }))
+
 app.options('*', cors())
+
 app.use(express.json())
 
-// basic health
-app.get('/', (req,res)=> res.json({ok:true, name:'TaleVerse API'}))
+app.get('/', (req, res) => res.json({ ok: true, name: 'TaleVerse API' }))
 
 // routes
 app.use('/api/auth', authRoutes)
@@ -28,7 +28,6 @@ app.use('/api/stories/:storyId/contributions', contributionRoutes)
 const commentRoutes = require('./routes/comments')
 app.use('/api/stories/:storyId/comments', commentRoutes)
 
-// standalone comment like (called directly by client)
 const commentController = require('./controllers/commentController')
 const authMiddleware = require('./middleware/auth')
 app.post('/api/comments/:commentId/like', authMiddleware, commentController.toggleCommentLike)

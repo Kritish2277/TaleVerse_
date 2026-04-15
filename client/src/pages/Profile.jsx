@@ -140,11 +140,15 @@ const avatarSeeds = [
   if (imagePreview) return imagePreview
   if (selectedAvatar) return selectedAvatar
 
-  if (user?.avatar?.startsWith('http')) return user.avatar  // ✅ FIX
+  if (user?.avatar && user.avatar.startsWith('http')) {
+    return user.avatar
+  }
 
-  if (user?.avatar) return `/avatars/${user.avatar}`
+  if (user?.avatar) {
+    return `/avatars/${user.avatar}`
+  }
 
-  return generateAvatarUrl(user?.avatarSeed || "User", user?.avatarStyle || 'adventurer')
+  return generateAvatarUrl(user?.displayName || "User", user?.avatarStyle || 'adventurer')
 }
 
   const points = stats.points
@@ -242,14 +246,18 @@ const avatarSeeds = [
                   }}>
                     {getAvatarSrc() ? (
                       <img
-                        src={getAvatarSrc()}
-                        alt="Profile"
-                        style={{
-                          width: '100%',
-                          height: '100%',
-                          objectFit: 'cover'
-                        }}
-                      />
+  src={getAvatarSrc()}
+  alt="Profile"
+  onError={(e) => {
+    e.target.src = generateAvatarUrl(user?.displayName || "User", "adventurer")
+  }}
+  style={{
+    width: '100%',
+    height: '100%',
+    borderRadius: '50%',
+    objectFit: 'cover'
+  }}
+/>
                     ) : (
                       (user?.displayName || 'U')[0]?.toUpperCase()
                     )}

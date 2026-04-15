@@ -7,7 +7,11 @@ export default function Welcome(){
   return (
     <section className="welcome">
       <div className="welcome-card">
-        <img src="/welcome_image.png" alt="Welcome illustration" className="welcome-img" />
+        <img 
+  src="/welcome.png" 
+  alt="Welcome illustration"
+  className="w-60 md:w-72 mx-auto mb-6 hover:scale-105 transition"
+/>
         <h2>Welcome to TaleVerse</h2>
         <p>Join a community of writers creating stories together. Earn points, discover amazing tales, and publish collaborative works.</p>
         <button className="btn primary" onClick={() => navigate('/why')}>Next</button>

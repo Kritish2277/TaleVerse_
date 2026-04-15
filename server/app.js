@@ -11,25 +11,22 @@ app.use(cors({
   origin: (origin, callback) => {
     const allowedOrigins = [
       'http://localhost:5173',
-      'http://localhost:5174',
-      'http://localhost:5175',
-      'http://localhost:5176',
       process.env.CLIENT_URL
     ].filter(Boolean)
 
-    // allow requests with no origin (like Postman)
     if (!origin) return callback(null, true)
 
     if (allowedOrigins.includes(origin)) {
       callback(null, true)
     } else {
-      callback(new Error('Not allowed by CORS'))
+      callback(new Error('CORS not allowed'))
     }
   },
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }))
+app.options('*', cors())
 app.use(express.json())
 
 // basic health

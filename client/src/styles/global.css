@@ -290,6 +290,8 @@ body {
   max-width: 520px;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
   animation: slideUp 0.5s ease-out;
+  text-align: center;
+  overflow: hidden;
 }
 
 .welcome-card h2, .auth-card h2, .why-card h2 {
@@ -310,11 +312,11 @@ body {
 
 .welcome-img {
   width: 100%;
-  max-width: 320px;
+  max-width: 260px;   
   height: auto;
-  margin: 0 auto 32px;
+  margin: 0 auto 24px;
   display: block;
-  border-radius: 12px;
+  object-fit: contain;
 }
 
 .home-img {

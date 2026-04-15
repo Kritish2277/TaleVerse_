@@ -7,24 +7,12 @@ const contributionRoutes = require('./routes/contributions')
 const voteRoutes = require('./routes/votes')
 
 const app = express()
+const cors = require('cors')
+
 app.use(cors({
-  origin: (origin, callback) => {
-    const allowedOrigins = [
-      'http://localhost:5173',
-      process.env.CLIENT_URL
-    ].filter(Boolean)
-
-    if (!origin) return callback(null, true)
-
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true)
-    } else {
-      callback(new Error('CORS not allowed'))
-    }
-  },
+  origin: '*', // TEMP for fixing (we’ll secure later)
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
+  allowedHeaders: ['Content-Type', 'Authorization']
 }))
 app.options('*', cors())
 app.use(express.json())

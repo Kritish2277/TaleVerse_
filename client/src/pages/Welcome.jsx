@@ -10,7 +10,7 @@ export default function Welcome(){
         <img 
   src="/welcome_image.png" 
   alt="Welcome illustration"
-  className="w-10 md:w-22 mx-auto mb-6 hover:scale-105 transition"
+  className="w-10 md:w-22 mx-auto mb-6 hover:scale-15 transition"
 />
         <h2>Welcome to TaleVerse</h2>
         <p>Join a community of writers creating stories together. Earn points, discover amazing tales, and publish collaborative works.</p>

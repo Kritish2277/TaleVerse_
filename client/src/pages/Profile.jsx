@@ -1,7 +1,7 @@
 import {useContext, useState, useRef, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import AuthContext from '../context/AuthContext'
-import { generateAvatarUrl } from '../utils/avatar'
+import { generateAvatarUrl, getAvatarSrc as resolveAvatar } from '../utils/avatar'
 import { apiFetch } from '../services/api'
 
 export default function Profile(){
@@ -137,19 +137,17 @@ const avatarSeeds = [
   }
 
   const getAvatarSrc = () => {
-  if (imagePreview) return imagePreview
-  if (selectedAvatar) return selectedAvatar
-
-  if (user?.avatar && user.avatar.startsWith('http')) {
-    return user.avatar
+    // 1. local file preview (upload in progress)
+    if (imagePreview) return imagePreview
+    // 2. avatar URL selected from the picker
+    if (selectedAvatar) return selectedAvatar
+    // 3. use shared utility which handles http URLs, local files, and DiceBear fallback
+    const src = resolveAvatar(user)
+    // 4. ultimate fallback — always a valid DiceBear URL
+    return src || generateAvatarUrl(user?.displayName || user?.avatarSeed || 'user', 'adventurer')
   }
 
-  if (user?.avatar) {
-    return `/avatars/${user.avatar}`
-  }
-
-  return generateAvatarUrl(user?.displayName || "User", user?.avatarStyle || 'adventurer')
-}
+  const avatarFallback = generateAvatarUrl(user?.displayName || user?.avatarSeed || 'user', 'adventurer')
 
   const points = stats.points
   const nextMilestone = Math.ceil((points + 1) / 100) * 100
@@ -249,7 +247,8 @@ const avatarSeeds = [
   src={getAvatarSrc()}
   alt="Profile"
   onError={(e) => {
-    e.target.src = generateAvatarUrl(user?.displayName || "User", "adventurer")
+    e.target.onerror = null
+    e.target.src = avatarFallback
   }}
   style={{
     width: '100%',
@@ -530,6 +529,7 @@ const avatarSeeds = [
                 <img
                   src={getAvatarSrc()}
                   alt="Profile"
+                  onError={e => { e.target.onerror = null; e.target.src = avatarFallback }}
                   style={{
                     width: '100%',
                     height: '100%',

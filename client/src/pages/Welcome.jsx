@@ -10,6 +10,7 @@ export default function Welcome(){
         <img 
   src="/welcome_image.png" 
   alt="Welcome illustration"
+  className="welcome-img"
 />
         <h2>Welcome to TaleVerse</h2>
         <p>Join a community of writers creating stories together. Earn points, discover amazing tales, and publish collaborative works.</p>

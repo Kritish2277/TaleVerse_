@@ -291,7 +291,7 @@ body {
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
   animation: slideUp 0.5s ease-out;
   text-align: center;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .welcome-card h2, .auth-card h2, .why-card h2 {
@@ -311,12 +311,11 @@ body {
 }
 
 .welcome-img {
-  width: 180px;       
-  max-width: 100%;
+  width: 100%;
+  max-width: 280px; 
   height: auto;
-  margin: 0 auto 20px;
   display: block;
-  object-fit: contain;
+  margin: 0 auto 20px;
 }
 
 .home-img {

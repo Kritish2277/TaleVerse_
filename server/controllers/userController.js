@@ -15,7 +15,18 @@ exports.getProfile = async (req, res) => {
     const points = (stories * 10) + (contributions * 5)
 
     res.json({
-      user,
+      user: {
+        id: user._id,
+        _id: user._id,
+        name: user.name,
+        displayName: user.displayName,
+        email: user.email,
+        avatar: user.avatar,
+        avatarSeed: user.avatarSeed,
+        avatarStyle: user.avatarStyle,
+        points: user.points ?? 0,
+        createdAt: user.createdAt
+      },
       stats: { stories, contributions, points }
     })
   } catch (err) {

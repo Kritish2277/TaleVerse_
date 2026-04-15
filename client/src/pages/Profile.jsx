@@ -1,7 +1,7 @@
 import {useContext, useState, useRef, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import AuthContext from '../context/AuthContext'
-import { generateAvatarUrl, getAvatarSrc as resolveAvatar } from '../utils/avatar'
+import { generateAvatarUrl, getAvatarSrc as sharedGetAvatarSrc } from '../utils/avatar'
 import { apiFetch } from '../services/api'
 
 export default function Profile(){
@@ -136,18 +136,14 @@ const avatarSeeds = [
     setIsEditing(false)
   }
 
+  // Single source of truth — same function used by Header and story cards
   const getAvatarSrc = () => {
-    // 1. local file preview (upload in progress)
     if (imagePreview) return imagePreview
-    // 2. avatar URL selected from the picker
     if (selectedAvatar) return selectedAvatar
-    // 3. use shared utility which handles http URLs, local files, and DiceBear fallback
-    const src = resolveAvatar(user)
-    // 4. ultimate fallback — always a valid DiceBear URL
-    return src || generateAvatarUrl(user?.displayName || user?.avatarSeed || 'user', 'adventurer')
+    return sharedGetAvatarSrc(user)
   }
 
-  const avatarFallback = generateAvatarUrl(user?.displayName || user?.avatarSeed || 'user', 'adventurer')
+  const avatarFallback = generateAvatarUrl(user?.avatarSeed || user?.displayName || 'user', user?.avatarStyle || 'adventurer')
 
   const points = stats.points
   const nextMilestone = Math.ceil((points + 1) / 100) * 100

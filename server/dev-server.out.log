@@ -1,0 +1,13 @@
+🚀 TaleVerse server running on port 5000
+🔥 MongoDB connected
+[toggleStoryLike] story=69d9eea2ffcf97d92e06c440 user=69d9ee40ffcf97d92e06c430 liked=true total=1
+[createStory] created story=69de0774130a481d1547c207 author=69d9ee40ffcf97d92e06c430
+[toggleStoryLike] story=69de0774130a481d1547c207 user=69d9ee40ffcf97d92e06c430 liked=true total=1
+[toggleStoryLike] story=69d9eea2ffcf97d92e06c440 user=69de07a7130a481d1547c217 liked=true total=2
+[toggleStoryLike] story=69de0774130a481d1547c207 user=69de07a7130a481d1547c217 liked=true total=2
+[addComment] story=69de0774130a481d1547c207 author=69de07a7130a481d1547c217 comment=69de07da130a481d1547c229
+[toggleCommentLike] comment=69de07da130a481d1547c229 user=69d9ee40ffcf97d92e06c430 liked=true total=1
+[addComment] story=69de0774130a481d1547c207 author=69d9ee40ffcf97d92e06c430 comment=69de08a3130a481d1547c26e
+[createStory] created story=69de09c3130a481d1547c2b2 author=69de07a7130a481d1547c217
+[toggleStoryLike] story=69de09c3130a481d1547c2b2 user=69de07a7130a481d1547c217 liked=true total=1
+[createStory] created story=69de0f14130a481d1547c2ec author=69de0d37130a481d1547c2c2

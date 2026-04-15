@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_BASE || 'https://your-backend-url.onrender.com/api'
+const API_BASE = import.meta.env.VITE_API_BASE || 'https://taleverse-wbf8.onrender.com/api'
 
 export async function apiFetch(path, opts = {}) {
   const headers = opts.headers || {}

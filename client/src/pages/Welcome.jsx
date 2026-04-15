@@ -8,7 +8,7 @@ export default function Welcome(){
     <section className="welcome">
       <div className="welcome-card">
         <img 
-  src="/welcome.png" 
+  src="/welcome_image.png" 
   alt="Welcome illustration"
   className="w-60 md:w-72 mx-auto mb-6 hover:scale-105 transition"
 />
